@@ -1,0 +1,663 @@
+
+
+/* Fuentes y estilo base */
+body {
+  margin: 0;
+  font-family: 'Anton', sans-serif;
+  background-color: #f3f3f3;
+  color: #111;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+.header {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #ababab;
+  color: white;
+}
+* {
+  box-sizing: border-box;
+}
+
+.header-contenido {
+  display: flex;
+  justify-content: space-between; /* logo a la izq, íconos a la der */
+  align-items: center;
+  
+}
+
+.logo {
+  height: 40px; /* ajusta según tu logo */
+}
+
+.iconos-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+/* Íconos */
+.icono-menu,
+.icono-carrito,
+.icono-lupa {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* Barra de búsqueda animada */
+.busqueda {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-busqueda {
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-left: 10px;
+  outline: none;
+}
+
+.busqueda.activa .input-busqueda {
+  width: 160px;
+  opacity: 1;
+  background-color: #fff;
+  color: #000;
+}
+
+
+
+@font-face {
+  font-family: 'Digitalino';
+  src: url('Digitalino.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Gelica';
+  src: url('Fontspring-DEMO-gelica-medium.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Neo-Syber';
+  src: url('Neo-Syber-Regular.otf') format('truetype');
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.half {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.black {
+  left: 0;
+  background: #0e0e0e;
+}
+
+.white {
+  right: 0;
+  background: #f2f2f2;
+}
+
+
+.robot-img {
+  position: absolute;
+  z-index: 10;
+  height: 80vh;
+  max-height: 700px;
+  transition: transform 0.6s ease;
+  bottom: 0;
+}
+
+/* Títulos principales */
+.titles {
+  z-index: 5;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+  justify-content: space-between;
+  padding: 0 100px; /* o el valor que necesites */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.white-title, .black-title {
+  font-size: 80px;
+  font-family: 'Neo-Syber', sans-serif;
+  font-weight: bold;
+  color: white; 
+  transform: translateX(0);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.black-title {
+  color: black;
+  font-size: 80px;
+  font-family: 'Neo-Syber', sans-serif;
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+
+
+/* Subtítulos */
+.subtitles {
+  z-index: 4;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  width: 80%;
+  opacity: 0;
+  z-index: 9;
+  transition: opacity 0.5s ease;
+}
+
+.white-sub, .black-sub {
+  font-size: 18px;
+  font-family: 'Gelica', sans-serif;
+  max-width: 45%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.white-sub {
+  color: white;
+  text-align: left;
+}
+
+.black-sub {
+  color: black;
+  text-align: right;
+}
+
+
+
+.nuevos-productos {
+  padding: 40px;
+  background-color: #111;
+  color: rgb(122, 122, 122);
+  text-align: center;
+}
+
+
+.nuevos-productos h2 {
+  font-family: 'Digitalino', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 60px;
+  color: rgb(255, 255, 255);  /* <-- aquí lo forzamos */
+}
+
+
+.container-productos {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px; /* antes era solo 0 40px */
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+
+.product-card {
+  flex: 1 1 22%;
+  min-width: 200px;
+  max-width: 22%;
+  height: 400px;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative; /* necesario para que .product-extra se posicione */
+  transition: background-color 0.3s ease;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.product-info {
+  position: static; /* importante: quitar el absolute */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-number {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.product-title {
+  font-size: 1.8rem; /* bajamos el tamaño */
+  font-family: 'Digitalino', sans-serif;
+  margin-bottom: 10px;
+  color: rgb(176, 176, 176);
+  line-height: 1.1;
+  word-break: break-word; /* para que no se corte raro */
+}
+
+
+.product-extra {
+  position: absolute;
+  bottom: -100%;
+  width: 100%;
+  text-align: center;
+  padding: 20px 10px;
+  transition: bottom 0.4s ease;
+  z-index: 2;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.product-extra img {
+  width: 80%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: white;
+  font-family: 'Gelica', sans-serif;
+}
+
+.product-btn {
+  padding: 8px 16px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Neo-Syber', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.product-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+
+
+
+
+
+/* Franja */
+.franja {
+  background-color: #e3e3e3;
+  color: rgb(16, 16, 16);
+  text-align: center;
+  padding: 10px 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+
+
+/* Simula la luz blanca detrás */
+.precios::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.productos-increibles {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #1c1c1c;
+  background-image: url("Lineas.png");
+  background-repeat: no-repeat;
+  background-size: contain; /* o 'contain' si quieres que respete proporciones */
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 1s ease;
+}
+
+
+.contenedor-producto {
+  position: relative;
+  width: 600px;
+  height: 600px;
+}
+
+.producto-central {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  transition: transform 1s ease;
+  z-index: 2;
+}
+
+.producto-central img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.producto-miniatura-superior {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  transition: transform 1s ease;
+  z-index: 3;
+  transform: translateX(300px); /* <- aquí está el ajuste final */
+}
+
+
+.producto-miniatura-superior img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.producto-miniatura-inferior {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+  transform: translateX(300px); /* <- mismo ajuste */
+}
+
+
+.producto-miniatura-inferior img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.info-producto {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+}
+
+.info-producto h2 {
+  font-family: 'Neo-Syber', sans-serif;
+  font-size: 3.8rem;
+  margin-bottom: 10px;
+  will-change: transform, opacity;
+
+}
+
+.info-producto p {
+  font-size: 2.9rem;
+  will-change: transform, opacity;
+
+}
+
+/* Estado base: sin animación */
+.info-producto h2,
+.info-producto p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estado de animación */
+.animar-texto {
+  animation: subirYRebotar 0.8s ease forwards;
+}
+
+
+@keyframes subirYRebotar {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-10%);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+
+
+.categorias {
+  padding: 60px 20px;
+  background-color: #111;
+  text-align: center;
+  color: white;
+}
+
+.categorias h2 {
+  font-size: 24px;
+  margin-bottom: 40px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  display: inline-block;
+  padding: 10px 40px;
+  font-family: 'Digitalino', sans-serif;
+}
+
+.categoria-lista {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0;
+  transition: all 0.5s ease;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.categoria {
+  width: 140px;
+  height: 280px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px black;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Texto arriba en activa */
+.categoria::after {
+  content: attr(data-categoria);
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Digitalino', sans-serif;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  pointer-events: none;
+  letter-spacing: 2px; /* espacio regular */
+  transition: all 0.3s ease;
+}
+
+
+/* Texto arriba cuando está activa */
+.categoria.activa {
+  width: 220px;
+  height: 320px;
+  font-size: 22px;
+  background-size: cover; /* <- mantener grande sin recorte raro */
+  background-position: center;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* texto arriba en activa */
+.categoria.activa::after {
+  top: 10px;
+  bottom: auto;
+  font-size: 24px;
+  font-family: 'Digitalino', sans-serif;
+  letter-spacing: -0.3px; /* más compacto = más ancho visualmente */
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+.footer {
+  margin-top: 50px;
+  font-family: 'Anton', sans-serif;
+}
+
+@font-face {
+  font-family: 'IncreibleFont';
+  src: url('Hit\ me\,\ punk!\ 01.ttf') format('opentype'); /* usa el nombre real */
+}
+
+
+
+
+.franja-unica {
+  background: white;
+  transform: rotate(-2deg);
+  transform-origin: top left;
+  width: 120%;
+  height: 60px;
+  margin-left: -10%;
+  margin-top: 0px;
+  margin-bottom: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.franja-texto {
+  font-family: 'IncreibleFont', sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: black;
+  white-space: nowrap;
+  transform: rotate(0deg); /* no lo enderezamos */
+}
+
+
+
+
+
+
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.footer {
+  background-color: #1a1a1a; /* o el color que estés usando */
+  color: white;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.footer-contenido {
+  padding: 20px 15px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Gelica', sans-serif;
+}
+.footer-redes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.footer-redes img {
+  width: 32px;   /* ajusta según tamaño de tus íconos */
+  height: 32px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-redes img:hover {
+  transform: scale(1.2); /* pequeño zoom al pasar el mouse */
+}
+
+
